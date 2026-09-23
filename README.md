@@ -194,4 +194,6 @@ El Vibe Coding acelera el prototipado, pero exige buenas reglas, pruebas propias
 
 ## 9. Herramientas
 
+![Cursor y Replit operando en conjunto](labswnt.png)
+
 **Cursor** (agente y reglas) · **Replit** (importación y ejecución en la nube) · **Streamlit Community Cloud** (despliegue) · **GitHub** (control de versiones) · **Python + Streamlit** · **API de Anthropic** (opcional).
