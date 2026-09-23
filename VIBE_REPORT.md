@@ -1,16 +1,20 @@
 # Vibe Report: EcoTrack
 
+**App desplegada:** https://erayt5kwopqjyqmdzdw9wk.streamlit.app/
+**Repositorio:** https://github.com/Jacobo2025/EcoTrack-
+
 ## 1. Cómo configuré las reglas del agente
-Creé un `.cursorrules` con cinco bloques: rol, stack, estilo de código, comportamiento y diseño. Lo más útil fue fijar el stack (Python + Streamlit) y exigir funciones pequeñas y modulares, porque evitó que el agente inventara arquitecturas complejas. También le pedí resumir su plan antes de cambios grandes y explicar cómo probar cada cambio, lo que me dio control sin tocar el código. Añadí una regla de resiliencia: si el LLM falla, se usa un parser por reglas. Los secretos van en Replit Secrets, nunca en el repositorio.
+Creé un archivo `.cursorrules` con cinco bloques: rol, stack, estilo de código, comportamiento y diseño. Fijé el stack (Python + Streamlit) para que el agente no inventara arquitecturas innecesarias, y exigí funciones pequeñas y modulares con type hints. También le pedí resumir su plan antes de cambios grandes y explicarme cómo probar cada cambio, lo que me dio control sin escribir código a mano. Añadí una regla de resiliencia: si el modelo de lenguaje falla, la app usa un parser por reglas y nunca se rompe. Los secretos, como la API key de Anthropic, se manejan solo como variables de entorno.
 
 ## 2. Dificultades al delegar el código
-- **[Completa con tu experiencia real]** Ej.: el modelo devolvía JSON envuelto en markdown y rompía el parseo; lo resolví describiendo el error al agente.
-- Los prompts vagos generaban interfaces sobrecargadas; aprendí a ser específico con la intención ("un campo, un botón, resultados claros").
-- Las estimaciones de CO2 del LLM varían entre llamadas; por eso incluí factores de referencia en el prompt y un aviso de que son aproximadas.
-- Verificar sigue siendo mi trabajo: no confié en el resultado sin probarlo con varias frases.
+- **Límites de créditos:** el agente de Replit agotó mis créditos diarios y quedé sin poder pedirle más cambios. Aprendí a agrupar instrucciones en pocos prompts claros.
+- **Despliegue fallido:** la publicación automática en Replit falló y, además, el plan gratuito hace expirar la app a los 30 días. Resolví el problema desplegando el mismo repositorio en Streamlit Community Cloud, que es gratuito.
+- **Fallos silenciosos:** el agente de Replit notó que, si Claude falla, la app cambia al parser de reglas sin explicar por qué. Es un ejemplo de por qué revisar lo que genera la IA sigue siendo mi responsabilidad.
+- **Estimaciones aproximadas:** los factores de emisión son promedios orientativos, no mediciones exactas. Por eso la interfaz lo advierte de forma explícita.
+- **Verificación manual:** probé frases variadas (por ejemplo, "Hoy comí carne y viajé 20km en bus", que da 7.78 kg CO2e) en lugar de confiar ciegamente en el código generado.
 
 ## 3. De escribir código a orquestar una visión
-**[Personaliza esta sección con lo que sentiste.]** Base sugerida: pasé de preguntarme "¿cómo se escribe esto?" a "¿qué debe lograr esto y cómo sabré que funciona?". Mi valor pasó de la sintaxis al criterio: definir reglas, detectar cuando el agente se desvía y decidir qué es suficientemente bueno para un MVP. Al principio hay cierta incomodidad por no controlar cada línea, pero se compensa con la velocidad de iteración. La responsabilidad no se delega: la calidad final sigue siendo mía.
+Pasé de preguntarme "¿cómo se escribe esto?" a "¿qué debe lograr esto y cómo sabré que funciona?". Mi trabajo dejó de ser la sintaxis y pasó a ser el criterio: definir reglas claras, detectar cuándo el agente se desvía y decidir qué es suficiente para un MVP. Al principio resulta incómodo no controlar cada línea, pero la velocidad de iteración lo compensa: tuve una app funcionando en local, en Replit y en la nube en una sola sesión. También entendí que delegar no es desentenderse: la calidad del resultado depende de qué tan bien comunico la intención y de cuánto pruebo lo que me devuelve la IA. La responsabilidad final sigue siendo mía.
 
-## Enlaces
-- Repl/Repositorio: [pega aquí tu URL]
+## 4. Conclusión
+El Vibe Coding acelera el prototipado, pero exige buenas reglas, pruebas propias y un plan B cuando las herramientas fallan, como me ocurrió con los créditos y el despliegue.
